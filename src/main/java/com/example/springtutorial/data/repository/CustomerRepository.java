@@ -1,6 +1,7 @@
 
-package com.example.springtutorial;
+package com.example.springtutorial.data.repository;
 
+import com.example.springtutorial.data.model.Customer;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
