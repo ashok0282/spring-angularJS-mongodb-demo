@@ -18,7 +18,7 @@ public class CustomerService {
         customer.setLastName("Jaiswal");
         customer.setDateofBirth(new Date());
         customer.setOccupation("Software Engineer");
-        customer.setAddress(new Address("3466 Data Dr", "Rancho Cordova", "CA", "USA", "95670"));
+        customer.setAddress(new Address("1234 Awesome Street", "Rancho Cordova", "CA", "USA", "95670"));
         return customer;
     }
 }
