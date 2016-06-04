@@ -11,11 +11,11 @@ import java.util.Date;
 
 public class CustomerService {
 
-    public Customer createCustomer() {
+    public Customer createCustomer(String firstname, String lastname) {
 
         Customer customer = new Customer();
-        customer.setFirstName("Ashok");
-        customer.setLastName("Jaiswal");
+        customer.setFirstName(firstname);
+        customer.setLastName(lastname);
         customer.setDateofBirth(new Date());
         customer.setOccupation("Software Engineer");
         customer.setAddress(new Address("1234 Awesome Street", "Rancho Cordova", "CA", "USA", "95670"));
