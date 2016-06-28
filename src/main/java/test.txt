@@ -1,0 +1,20 @@
+ var cursor = db.grades.find({"type":"homework"}).sort({"student_id":1, "score":1})
+ var doc_p = cursor.next();
+ var count = 0;
+ while(cursor.hasNext()) {
+    var doc2 = cursor.next();
+
+    //print("Student_id:"+doc_p.student_id +" score:"+doc_p.score);
+    //print("Student_id2:"+doc2.student_id +" score2:"+doc2.score);
+
+    if(doc_p.student_id == doc2.student_id) {
+        db.grades.remove({"student_id":doc_p.student_id,"score":doc_p.score});
+        print("Removed:"+doc_p.student_id +" score:"+doc_p.score);
+        count++;
+    }
+
+    doc_p = doc2;
+
+    //print("Count:"+count);
+
+ } print("Count:"+count);

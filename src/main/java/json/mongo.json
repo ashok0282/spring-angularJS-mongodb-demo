@@ -124,7 +124,7 @@ $skip: 10
 
 db.zips.aggregate([
 {$match: {
-state: {$in:["NY", "CA"]}
+pop: {$gt: 25000}, state: {$in:["CA", "NY"]}
 }
 },
 {
@@ -142,3 +142,59 @@ average_pop: 1,
 }
 }
 ])
+
+
+db.grades.aggregate([
+{
+$group: {
+_id: {
+student_id: "$student_id", class_id: "$class_id"
+},
+average_score: {
+}scores.type: {
+$ne: "quiz"
+}
+}
+
+}
+])
+
+db.zips.aggregate([
+{
+$match: {
+city: {
+$substr:["$city", 0, 1]}
+}
+}
+])
+doc = db.zips.aggregate([
+{
+$project: {
+city: {
+"$substr":["$city", 0, 1]},
+pop: 1
+}
+},
+{
+$match: {
+city: {
+$regex: /[0-9]/
+}
+}
+},
+{
+$project: {
+pop: 1,
+city: 1
+}
+}
+])
+print("total size:"+doc.
+var count = 0;
+var population = 0;
+while(doc.hasNext()) {
+var doc_next = doc.next();
+print("pop:"+doc_next.pop);
+count = count + doc_next.pop;
+print("count:"+count);
+}
