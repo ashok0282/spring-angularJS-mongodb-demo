@@ -1,7 +1,5 @@
 package com.example.springtutorial.util;
 
-import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 
 /**
@@ -13,13 +11,13 @@ public class MongoDBUtil {
 
     static {
 
-        MongoClient mongoClient = new MongoClient(new ServerAddress("localhost", 27017));
+       /* MongoClient mongoClient = new MongoClient(new ServerAddress("localhost", 27017));
 
         if (mongoClient == null) {
             System.out.println("Could not connect to the Mongo DB server....");
         }
-
-        mongoDatabase = mongoClient.getDatabase("test");
+*/
+        //mongoDatabase = mongoClient.getDatabase("test");
 
     }
 

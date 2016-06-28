@@ -110,3 +110,4 @@ db.zips.aggregate([
     {$skip: 10}
 ])
 
+db.zips.aggregate([ {     $match: {state:{$in:["NY","CA"]}} } , {     $group: {          _id:"$state",          "average_pop":{$avg:"$pop"}     } }  ])
