@@ -1,12 +1,10 @@
 package com.example.springtutorial;
 
-import com.example.springtutorial.data.model.Customer;
 import com.example.springtutorial.data.repository.CustomerRepository;
 import com.example.springtutorial.service.CustomerService;
-import com.example.springtutorial.util.MongoDBUtil;
-import com.mongodb.client.FindIterable;
+import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,31 +33,19 @@ public class SpringAngularJsMongoDemoApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        repository.deleteAll();
-        // save a couple of customers
-        repository.save(customerService.createCustomer("Ashok", "Jaiswal"));
-        repository.save(customerService.createCustomer("Bob", "Rowden"));
-        repository.save(customerService.createCustomer("Alice", "Lara"));
-        repository.save(customerService.createCustomer("Mona", "Gupta"));
+        MongoClient c = new MongoClient();
+        MongoDatabase db = c.getDatabase("test");
+        MongoCollection<Document> animals = db.getCollection("animals");
 
-        // fetch all customers
-        System.out.println("Customers found with findAll():");
-        System.out.println("-------------------------------");
-        for (Customer customer : repository.findAll()) {
-            System.out.println("firstname:" + customer.getFirstName() + " lastname:" + customer.getLastName());
-        }
+        Document animal = new Document("animal", "monkey");
 
-        System.out.println();
-
-        MongoCollection<Document> customers = MongoDBUtil.getMongoDatabase().getCollection("customer");
-
-        System.out.println("Count of customers in collection:" + customers.count());
-
-        FindIterable<Document> documents = customers.find();
-        MongoCursor<Document> cursor = documents.iterator();
-        while (cursor.hasNext()) {
-            System.out.println(cursor.next().toJson());
-        }
+        animals.insertOne(animal);
+        animal.remove("animal");
+        animal.append("animal", "cat");
+        animals.insertOne(animal);
+        animal.remove("animal");
+        animal.append("animal", "lion");
+        animals.insertOne(animal);
 
 
     }
